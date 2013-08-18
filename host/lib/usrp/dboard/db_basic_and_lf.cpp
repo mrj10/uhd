@@ -143,10 +143,13 @@ basic_rx::basic_rx(ctor_args_t args, double max_freq) : rx_dboard_base(args){
     //disable RX dboard clock by default
     this->get_iface()->set_clock_enabled(dboard_iface::UNIT_RX, false);
 
+// MRJ 20130817 Disabled this because I want the GPIOs to always be inputs.  Emailed the USRP list to see what a better workaround might be.
+#if 0
     //set GPIOs to output 0x0000 to decrease noise pickup
     this->get_iface()->set_pin_ctrl(dboard_iface::UNIT_RX, 0x0000);
     this->get_iface()->set_gpio_ddr(dboard_iface::UNIT_RX, 0xFFFF);
     this->get_iface()->set_gpio_out(dboard_iface::UNIT_RX, 0x0000);
+#endif
 }
 
 basic_rx::~basic_rx(void){
@@ -198,10 +201,13 @@ basic_tx::basic_tx(ctor_args_t args, double max_freq) : tx_dboard_base(args){
     //disable TX dboard clock by default
     this->get_iface()->set_clock_enabled(dboard_iface::UNIT_TX, false);
 
+// MRJ 20130817 Disabled this because I want the GPIOs to always be inputs.  Emailed the USRP list to see what a better workaround might be.
+#if 0 
     //set GPIOs to output 0x0000 to decrease noise pickup
     this->get_iface()->set_pin_ctrl(dboard_iface::UNIT_TX, 0x0000);
     this->get_iface()->set_gpio_ddr(dboard_iface::UNIT_TX, 0xFFFF);
     this->get_iface()->set_gpio_out(dboard_iface::UNIT_TX, 0x0000);
+#endif
 }
 
 basic_tx::~basic_tx(void){
